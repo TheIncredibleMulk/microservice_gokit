@@ -15,6 +15,10 @@ type getResponse struct {
 }
 
 type validateRequest struct {
+	Date string `json:"date"`
+}
+
+type validateResponse struct {
 	Valid bool   `json:"valid"`
 	Err   string `json:"err,omitempty"`
 }
@@ -31,7 +35,16 @@ func decodeGetRequest(ctx context.Context, r *http.Request) (interface{}, error)
 	return req, nil
 }
 
-func decodeValidRequest(ctx context.Context, r *http.Request) (interface{}, error) {
+func decodeValidateRequest(ctx context.Context, r *http.Request) (interface{}, error) {
+	var req validateRequest
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		return nil, err
+	}
+	return req, nil
+}
+
+func decodeStatusRequest(ctx context.Context, r *http.Request) (interface{}, error) {
 	var req statusRequest
 	return req, nil
 }

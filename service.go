@@ -21,6 +21,11 @@ func NewService() Service {
 
 // Status only tells us that our service is ok
 func (dateService) Status(ctx context.Context) (string, error) {
+	return "ok", nil
+}
+
+// Get will return today's date
+func (dateService) Get(ctx context.Context) (string, error) {
 	now := time.Now()
 	return now.Format("02/01/2006"), nil
 }

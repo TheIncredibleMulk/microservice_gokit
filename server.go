@@ -27,7 +27,7 @@ func NewHTTPServer(cts context.Context, endpoints Endpoints) http.Handler {
 
 	r.Methods("POST").Path("/validate").Handler(httptransport.NewServer(
 		endpoints.ValidateEndpoint,
-		decodeValidRequest,
+		decodeValidateRequest,
 		encodeResponse,
 	))
 

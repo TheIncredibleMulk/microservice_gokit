@@ -8,6 +8,8 @@ import (
 
 func TestStatus(t *testing.T) {
 	srv, ctx := setup()
+
+	s, err := srv.Status(ctx)
 	if err != nil {
 		t.Errorf("Error: %s", err)
 	}
@@ -56,5 +58,5 @@ func TestValidate(t *testing.T) {
 }
 
 func setup() (srv Service, ctx context.Context) {
-	return NewService(), context.Background
+	return NewService(), context.Background()
 }
