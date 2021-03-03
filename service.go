@@ -1,4 +1,4 @@
-package microservice_gokit
+package mulkdate
 
 import (
 	"context"
@@ -16,7 +16,7 @@ type dateService struct{}
 
 // NewService makes a new Service.
 func NewService() Service {
-	return dateService
+	return dateService{}
 }
 
 // Status only tells us that our service is ok

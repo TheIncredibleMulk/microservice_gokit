@@ -1,4 +1,4 @@
-package microservice_gokit
+package mulkdate
 
 import (
 	"context"
@@ -31,12 +31,12 @@ func decodeGetRequest(ctx context.Context, r *http.Request) (interface{}, error)
 	return req, nil
 }
 
-func decodeValidRequest(ctx context.Context r *http.Request)(interface{}, error) {
+func decodeValidRequest(ctx context.Context, r *http.Request) (interface{}, error) {
 	var req statusRequest
 	return req, nil
 }
 
 // Last but not least, we have the encoder for the response output
-func encodeResponse(ctx context.Context, w http.ResponseWriter, response interface{}, error)  {
+func encodeResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
 	return json.NewEncoder(w).Encode(response)
 }
