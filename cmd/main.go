@@ -15,7 +15,7 @@ import (
 
 func main() {
 	var (
-		httpAddr = flag.String("http", "8080", "http listen address")
+		httpAddr = flag.String("http", ":8080", "http listen address")
 	)
 	flag.Parse()
 	ctx := context.Background()
@@ -40,6 +40,7 @@ func main() {
 	go func() {
 		log.Println("mulkdate is listening on port:", *httpAddr)
 		handler := mulkdate.NewHTTPServer(ctx, endpoints)
+		// fmt.Println("httpAddr=", *httpAddr)
 		errChan <- http.ListenAndServe(*httpAddr, handler)
 	}()
 
