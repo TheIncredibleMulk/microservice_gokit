@@ -10,7 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/TheIncredibleMulk/microservice_gokit"
+	"github.com/TheIncredibleMulk/mulkdate"
 )
 
 func main() {
@@ -19,8 +19,8 @@ func main() {
 	)
 	flag.Parse()
 	ctx := context.Background()
-	//the microservice_gokit service
-	srv := microservice_gokit.NewService()
+	//the mulkdate service
+	srv := mulkdate.NewService()
 	errChan := make(chan error)
 
 	go func() {
@@ -30,16 +30,16 @@ func main() {
 	}()
 
 	// mapping endpoints
-	endpoints := microservice_gokit.Endpoints{
-		GetEndpoint:      microservice_gokit.MakeGetEndpoint(srv),
-		StatusEndpoint:   microservice_gokit.MakeStatusEndpoint(srv),
-		ValidateEndpoint: microservice_gokit.MakeValidateEndpoint(srv),
+	endpoints := mulkdate.Endpoints{
+		GetEndpoint:      mulkdate.MakeGetEndpoint(srv),
+		StatusEndpoint:   mulkdate.MakeStatusEndpoint(srv),
+		ValidateEndpoint: mulkdate.MakeValidateEndpoint(srv),
 	}
 
 	// HTTP Trasport
 	go func() {
-		log.Println("microservice_gokit is listening on port:", *httpAddr)
-		handler := microservice_gokit.NewHTTPServer(ctx, endpoints)
+		log.Println("mulkdate is listening on port:", *httpAddr)
+		handler := mulkdate.NewHTTPServer(ctx, endpoints)
 		errChan <- http.ListenAndServe(*httpAddr, handler)
 	}()
 
